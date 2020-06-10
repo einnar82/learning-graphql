@@ -3,6 +3,7 @@ import {
   GraphQLString,
   GraphQLInt,
   GraphQLID,
+  GraphQLNonNull,
 } from "graphql";
 import { AuthorType, BookType } from "../types";
 import { createAuthor } from "../../core/repositories/author.repository";
@@ -15,10 +16,10 @@ const Mutation = new GraphQLObjectType({
       type: AuthorType,
       args: {
         name: {
-          type: GraphQLString,
+          type: new GraphQLNonNull(GraphQLString),
         },
         age: {
-          type: GraphQLInt,
+          type: new GraphQLNonNull(GraphQLInt),
         },
       },
       resolve: (parent, args) => {
@@ -28,9 +29,9 @@ const Mutation = new GraphQLObjectType({
     addBook: {
       type: BookType,
       args: {
-        name: { type: GraphQLString },
-        genre: { type: GraphQLString },
-        author_id: { type: GraphQLID },
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        genre: { type: new GraphQLNonNull(GraphQLString) },
+        author_id: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve: (parent, args) => {
         return createBook(args);
