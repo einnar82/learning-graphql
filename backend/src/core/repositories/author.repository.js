@@ -19,4 +19,13 @@ const allAuthors = async () => {
   }
 };
 
-export { createAuthor, allAuthors };
+const findAuthor = async (id) => {
+  try {
+    const author = await Author.findById(id);
+    return author;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export { createAuthor, allAuthors, findAuthor };

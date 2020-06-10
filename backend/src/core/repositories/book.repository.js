@@ -19,4 +19,13 @@ const allBooks = async () => {
   }
 };
 
-export { createBook, allBooks };
+const findBook = async (id) => {
+  try {
+    const book = await Book.find({ author_id: id });
+    return book;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export { createBook, allBooks, findBook };
