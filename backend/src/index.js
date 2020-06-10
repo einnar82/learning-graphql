@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import "dotenv/config";
 import graphqlHTTP from "express-graphql";
 import schema from "./schema";
+import initializeDB from "./helpers/database";
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -27,3 +28,5 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`app is listening to port ${port}`);
 });
+
+initializeDB();
