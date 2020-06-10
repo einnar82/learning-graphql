@@ -5,7 +5,7 @@ import {
   GraphQLInt,
 } from "graphql";
 import { findAuthor } from "../../core/repositories/author.repository";
-import { findBook } from "../../core/repositories/book.repository";
+import { findBooks } from "../../core/repositories/book.repository";
 
 const BookType = new GraphQLObjectType({
   name: "Book",
@@ -31,7 +31,7 @@ const AuthorType = new GraphQLObjectType({
     books: {
       type: new GraphQLList(BookType),
       resolve: (parent, args) => {
-        return findBook(parent.id);
+        return findBooks(parent.id);
       },
     },
   }),
