@@ -1,6 +1,7 @@
 import { GraphQLObjectType, GraphQLID, GraphQLList } from "graphql";
 import { BookType, AuthorType } from "../types";
 import { allBooks } from "../../core/repositories/book.repository";
+import { allAuthors } from "../../core/repositories/author.repository";
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
@@ -28,7 +29,7 @@ const RootQuery = new GraphQLObjectType({
     authors: {
       type: new GraphQLList(AuthorType),
       resolve: (parent, args) => {
-        // return [...dummyAuthors];
+        return allAuthors();
       },
     },
   },

@@ -5,10 +5,18 @@ const createAuthor = async (params) => {
     ...params,
   });
   try {
-    return author.save();
+    return await author.save();
   } catch (error) {
     throw error;
   }
 };
 
-export { createAuthor };
+const allAuthors = async () => {
+  try {
+    return await Author.find({});
+  } catch (error) {
+    throw error;
+  }
+};
+
+export { createAuthor, allAuthors };
